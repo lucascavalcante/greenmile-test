@@ -1,0 +1,19 @@
+// fonts
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+$icon-font-path: '../fonts/';
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+$grid-columns: 12;
+$gutter-width: 1rem;
+$outer-margin: 1rem;
+
+/* Space out content a bit */
+html, body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  margin: 10px 0;
+}
+
+
