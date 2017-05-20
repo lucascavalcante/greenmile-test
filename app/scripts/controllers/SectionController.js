@@ -2,33 +2,46 @@
 
 class SectionController {
 
-    constructor(quizId) {
-        this._sectionList = new List();
+    constructor() {
+
+        var parent = this;
+
+        this._sectionList = new ListSection(model => {
+            MustacheHelper.print(model, { item: 'section', quizId: parent._quizId });
+        });
         this._idSection = 0;
+        this._quizId = 0;
+        this._titleSection = null;
+    }
+
+    addSection(quizId) {
+        this._titleSection = document.querySelector('#title-section');
         this._quizId = quizId;
-        this._titleSection = document.querySelector('');
-    }
-
-    addSection() {
         this._sectionList.add(this._newSection());
-        MustacheHelper.printSection(this._sectionList);
         this._clearForm();
+        $('#modal').modal('hide');
     }
 
-    delSection(id) {
+    delSection(id,quizId) {
+        this._quizId = quizId;
         if(confirm('Tem certeza que deseja apagar essa seção?')) {
             this._sectionList.del(id);
-            MustacheHelper.printSection(this._sectionList);
         }
     }
 
     getFocus() {
-        //this._titleSection.focus();
+        this._titleSection.focus();
+    }
+
+    openModalQuestion(id) {
+        let sectionSelected = this._sectionList.searchById(id);
+        HtmlElementsHelper.formQuestion(id, sectionSelected.title);
+        $('#modal').modal();
     }
 
     _newSection() {
-        this._idSection = ((this._sectionList.list).length) + 1
-        return new Quiz(this._idSection, this._quizId, this._titleSection.value);
+        this._idSection = ((this._sectionList.list).length) + 1;
+        return new Section(this._idSection, this._quizId, this._titleSection.value);
     }
 
     _clearForm() {

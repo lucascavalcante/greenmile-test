@@ -32,6 +32,27 @@
 
 	<!-- templates -->
 
+	<script id="item-section" type="text/html">
+		<div class="panel-group" id="accordion">
+		{{#section}}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion" href="#section{{ id }}">Seção: {{ title }}</a>
+						<span class="pull-right">
+							<a title="Adicionar Pergunta" onclick="section.openModalQuestion({{ id }})"><i class="fa fa-file-o" aria-hidden="true"></i></a>
+							<a title="Apagar Seção" onclick="section.delSection({{ id }},{{ quizId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
+						</span>
+					</h4>
+				</div>
+				<div id="section{{ id }}" class="panel-collapse collapse">
+					<div class="panel-body"></div>
+				</div>
+			</div>
+		{{/section}}
+		</div>
+	</script>
+
 	<script id="item-quiz" type="text/html">
 
 		<div>
@@ -41,9 +62,10 @@
 				<div class="panel-body">
 					{{ title }}
 					<span class="pull-right">
-						<a title="Adicionar Seção" onclick="quiz.openModal({{ id }})"><i class="fa fa-list" aria-hidden="true"></i></a>
+						<a title="Adicionar Seção" onclick="quiz.openModalSection({{ id }})"><i class="fa fa-list" aria-hidden="true"></i></a>
 						<a title="Apagar Questionário" onclick="quiz.delQuiz({{ id }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
 					</span>
+					<div id="sections-{{ id }}"></div>
 				</div>
 			</div>
 			{{/quiz}}
@@ -70,6 +92,7 @@
 	<script src="/bower_components/mustache.js/mustache.min.js"></script>
 	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+	<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
 	<!-- endbuild -->
 
 
@@ -81,8 +104,10 @@
 	<script src="scripts/models/Section.js"></script>
 	<script src="scripts/models/Quiz.js"></script>
 	<script src="scripts/models/List.js"></script>
+	<script src="scripts/models/ListSection.js"></script>
 
 	<script src="scripts/controllers/QuizController.js"></script>
+	<script src="scripts/controllers/SectionController.js"></script>
 
 	<script src="scripts/app.js"></script>
 	<!-- endbuild -->

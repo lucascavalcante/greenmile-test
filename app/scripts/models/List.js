@@ -2,12 +2,14 @@
 
 class List {
     
-    constructor() {
+    constructor(updateView) {
         this._list = [];
+        this._updateView = updateView;
     }
     
     add(list) {
         this._list.push(list);
+        this._updateView(this);
     }
 
     del(id) {
@@ -15,6 +17,7 @@ class List {
             if(this._list[i].id === id)
                 this._list.splice(i, 1);
         }
+        this._updateView(this);
     }
 
     searchById(id) {

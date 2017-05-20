@@ -5,7 +5,7 @@ class Section {
     constructor(id, quizId, title) {
         this._id = id;
         this._quizId = quizId;
-        this.title = title;
+        this._title = title;
     }
 
     get id() {

@@ -3,14 +3,16 @@
 class QuizController {
 
     constructor() {
-        this._quizList = new List();
+        this._quizList = new List(model => {
+            MustacheHelper.print(model, { item: 'quiz' });
+        });
+        
         this._idQuiz = 0;
         this._titleQuiz = document.querySelector('#title-quiz');
     }
 
     addQuiz() {
         this._quizList.add(this._newQuiz());
-        MustacheHelper.printQuiz(this._quizList);
         this._clearForm();
         this.getFocus();
     }
@@ -18,7 +20,6 @@ class QuizController {
     delQuiz(id) {
         if(confirm('Tem certeza que deseja apagar esse questionário?')) {
             this._quizList.del(id);
-            MustacheHelper.printQuiz(this._quizList);
         }
     }
 
@@ -26,7 +27,7 @@ class QuizController {
         this._titleQuiz.focus();
     }
 
-    openModal(id) {
+    openModalSection(id) {
         let quizSelected = this._quizList.searchById(id);
         HtmlElementsHelper.formSection(id, quizSelected.title);
         $('#modal').modal();
