@@ -4,7 +4,8 @@
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
     "modernizr": "~2.8.1",
-    "flexboxgrid-sass": "^8.0.5"
+    "flexboxgrid-sass": "^8.0.5",
+    "mustache.js": "mustache#^2.3.0"
   },
   "overrides": {
     "bootstrap-sass": {

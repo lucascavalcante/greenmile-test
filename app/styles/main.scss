@@ -3,6 +3,8 @@
 $icon-font-path: '../fonts/';
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "bower_components/sass-flex-mixin/_flex.scss";
+@import "bower_components/flexboxgrid-sass/flexboxgrid.scss";
 // endbower
 
 $grid-columns: 12;

@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Greenmile Test</title>
 
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<!-- build:css styles/main.css -->
 	<link rel="stylesheet" href="styles/main.css">
 	<!-- endbuild -->
@@ -15,17 +16,75 @@
 
 <body>
 
+	<!-- Modal -->
+
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- templates -->
+
+	<script id="item-quiz" type="text/html">
+
+		<div>
+			{{#quiz}}
+			<div class="panel panel-default">
+				<div class="panel-heading">Questionário {{ id }}</div>
+				<div class="panel-body">
+					{{ title }}
+					<span class="pull-right">
+						<a title="Adicionar Seção" onclick="quiz.openModal({{ id }})"><i class="fa fa-list" aria-hidden="true"></i></a>
+						<a title="Apagar Questionário" onclick="quiz.delQuiz({{ id }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
+					</span>
+				</div>
+			</div>
+			{{/quiz}}
+		</div>
+
+	</script>
+
+	<!-- /templates -->
+
 	<div class="container">
-		
+
+		<div class="form-group">
+			<label for="title-quiz">Título do Questionário</label>
+			<input type="text" class="form-control" id="title-quiz" required>
+			<button class="btn btn-primary form-control" onclick="quiz.addQuiz()">Criar Questionário</button>
+		</div>
+
+		<div id="quizzes"></div>
+
 	</div>
 
 	<!-- build:js scripts/vendor.js -->
 	<script src="/bower_components/modernizr/modernizr.js"></script>
+	<script src="/bower_components/mustache.js/mustache.min.js"></script>
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
 	<!-- endbuild -->
 
 
 	<!-- build:js scripts/main.js -->
-	<script src="scripts/main.js"></script>
+	<script src="scripts/helpers/MustacheHelper.js"></script>
+	<script src="scripts/helpers/HtmlElementsHelper.js"></script>
+
+	<script src="scripts/models/Question.js"></script>
+	<script src="scripts/models/Section.js"></script>
+	<script src="scripts/models/Quiz.js"></script>
+	<script src="scripts/models/List.js"></script>
+
+	<script src="scripts/controllers/QuizController.js"></script>
+
+	<script src="scripts/app.js"></script>
 	<!-- endbuild -->
 </body>
 
