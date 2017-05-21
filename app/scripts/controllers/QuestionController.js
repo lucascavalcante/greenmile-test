@@ -15,17 +15,17 @@ class QuestionController {
     }
 
     addQuestion(sectionId) {
-        this._titleQuestion = document.querySelector('#title-Question');
+        this._titleQuestion = document.querySelector('#title-question');
         this._sectionId = sectionId;
-        this._QuestionList.add(this._newQuestion());
+        this._questionList.add(this._newQuestion());
         this._clearForm();
         $('#modal').modal('hide');
     }
 
-    delQuestion(id) {
-        if(confirm('Tem certeza que deseja apagar essa seção?')) {
-            this._QuestionList.del(id);
-            MustacheHelper.printQuestion(this._QuestionList);
+    delQuestion(id, sectionId) {
+        this._sectionId = sectionId;
+        if(confirm('Tem certeza que deseja apagar essa pergunta?')) {
+            this._questionList.del(id);
         }
     }
 
@@ -33,8 +33,14 @@ class QuestionController {
         //this._titleQuestion.focus();
     }
 
+    openModalEditQuestion(id) {
+        let questionSelected = this._questionList.searchById(id);
+        HtmlElementsHelper.formEditQuestion(id, questionSelected.title);
+        $('#modal').modal();
+    }
+
     _newQuestion() {
-        this._idQuestion = ((this._QuestionList.list).length) + 1;
+        this._idQuestion = ((this._questionList.list).length) + 1;
         return new Question(this._idQuestion, this._sectionId, this._titleQuestion.value);
     }
 

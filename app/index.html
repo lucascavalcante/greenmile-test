@@ -30,15 +30,27 @@
 		</div>
 	</div>
 
-	<!-- templates -->
+	<!-- Questions Template -->
+	<script id="item-question" type="text/html">
+		{{#question}}
+			<li>
+				{{ title }}
+				<span class="pull-right">
+					<a title="Editar Pergunta" onclick="question.openModalEditQuestion({{ id }})"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					<a title="Apagar Pergunta" onclick="question.delQuestion({{ id }},{{ quizId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</span>
+			</li>
+		{{/question}}
+	</script>
 
+	<!-- Sections Template -->
 	<script id="item-section" type="text/html">
-		<div class="panel-group" id="accordion">
+		<div class="panel-group" id="accordion{{ id }}">
 		{{#section}}
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion" href="#section{{ id }}">Seção: {{ title }}</a>
+						<a data-toggle="collapse" data-parent="#accordion{{ id }}" href="#section{{ id }}">Seção: {{ title }}</a>
 						<span class="pull-right">
 							<a title="Adicionar Pergunta" onclick="section.openModalQuestion({{ id }})"><i class="fa fa-file-o" aria-hidden="true"></i></a>
 							<a title="Apagar Seção" onclick="section.delSection({{ id }},{{ quizId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -46,13 +58,16 @@
 					</h4>
 				</div>
 				<div id="section{{ id }}" class="panel-collapse collapse">
-					<div class="panel-body"></div>
+					<div class="panel-body">
+						<ol id="questions-{{ id }}"></ol>
+					</div>
 				</div>
 			</div>
 		{{/section}}
 		</div>
 	</script>
 
+	<!-- Quizzes Template -->
 	<script id="item-quiz" type="text/html">
 
 		<div>
@@ -103,11 +118,14 @@
 	<script src="scripts/models/Question.js"></script>
 	<script src="scripts/models/Section.js"></script>
 	<script src="scripts/models/Quiz.js"></script>
+
 	<script src="scripts/models/List.js"></script>
 	<script src="scripts/models/ListSection.js"></script>
+	<script src="scripts/models/ListQuestion.js"></script>
 
 	<script src="scripts/controllers/QuizController.js"></script>
 	<script src="scripts/controllers/SectionController.js"></script>
+	<script src="scripts/controllers/QuestionController.js"></script>
 
 	<script src="scripts/app.js"></script>
 	<!-- endbuild -->

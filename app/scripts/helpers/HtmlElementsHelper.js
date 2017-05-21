@@ -37,5 +37,38 @@ class HtmlElementsHelper {
         ';
         document.querySelector('.modal-body').innerHTML  = html;
     }
+
+    static formEditQuestion(id, title) {
+        document.querySelector('.modal-title').innerHTML  = 'Editar Pergunta';
+        document.querySelector('.modal-body').innerHTML  = '<strong>Enunciado:</strong> ' + title;
+        
+        var div = document.createElement('div');
+        div.classList.add('form-group');
+
+        var select = document.createElement('select');
+        select.classList.add('form-control');
+        select.setAttribute('onchange','question.addAnswerType()');
+
+        var defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.text = 'Selecione o tipo de resposta para esta pergunta';
+        select.appendChild(defaultOption);
+        
+        var options = {
+            'short-text': 'Texto Curto',
+            'long-text': 'Texto Longo'
+        };
+
+        for(let key in options) {
+            let option = document.createElement('option');
+            option.value = key;
+            option.text = options[key];
+            select.appendChild(option);
+        }
+
+        div.appendChild(select);
+        
+        document.querySelector('.modal-body').insertBefore(div, null);
+    }
     
 }

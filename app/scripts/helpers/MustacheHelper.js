@@ -41,8 +41,17 @@ class MustacheHelper {
     }
 
     static printQuestion(data, config) {
-        console.log(data);
-        console.log(config);
+
+        let listBySection = [];
+        
+        for(var i = 0; i < (data._list).length; i++) {
+            if(data._list[i].sectionId === config.sectionId)
+                listBySection.push(data._list[i]);
+        }
+
+        let items = { question: listBySection };
+        let output = Mustache.render(document.getElementById('item-question').firstChild.nodeValue, items);
+        document.getElementById('questions-' + config.sectionId).innerHTML = output;
     }
     
 }
