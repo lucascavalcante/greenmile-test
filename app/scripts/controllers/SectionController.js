@@ -39,6 +39,10 @@ class SectionController {
         $('#modal').modal();
     }
 
+    getFilteredList(quizId) {
+        return this._sectionList.searchByQuizId(quizId);
+    }
+
     _newSection() {
         this._idSection = ((this._sectionList.list).length) + 1;
         return new Section(this._idSection, this._quizId, this._titleSection.value);

@@ -39,6 +39,10 @@ class QuestionController {
         $('#modal').modal();
     }
 
+    getFilteredList(sectionId) {
+        return this._questionList.searchBySectionId(sectionId);
+    }
+
     _newQuestion() {
         this._idQuestion = ((this._questionList.list).length) + 1;
         return new Question(this._idQuestion, this._sectionId, this._titleQuestion.value);

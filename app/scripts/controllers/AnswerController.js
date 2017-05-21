@@ -25,7 +25,6 @@ class AnswerController {
         this._answerList.add(this._newAnswer());
         $('#modal').modal('hide');
         document.getElementById('add-type-answer' + idQuestion).remove();
-        console.log(this._answerList.list);
     }
 
     addAnswerType(idQuestion, answerType) {
@@ -34,6 +33,10 @@ class AnswerController {
 
     addOptionAnswer(idQuestion) {
         HtmlElementsHelper.printOptionAnswer(idQuestion);
+    }
+
+    getFilteredList(questionId) {
+        return this._answerList.searchByQuestionId(questionId);
     }
 
     _newAnswer() {

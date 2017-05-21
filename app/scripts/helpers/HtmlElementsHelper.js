@@ -117,5 +117,45 @@ class HtmlElementsHelper {
         input.classList.add('form-control');
         document.querySelector('#answers').insertBefore(input, document.getElementById('add-button'));
     }
+
+    static viewQuiz(quiz, nestedData) {
+        document.querySelector('.modal-title').innerHTML  = 'Visualizar Questionário - ' + quiz.title;
+        document.querySelector('.modal-body').innerHTML  = '';
+
+        var form = document.createElement('form');
+
+        for(let i = 0; i < nestedData.length; i++) {
+            var fieldset = document.createElement('fieldset');
+            let legend = document.createElement('legend');
+            let titleLegend = document.createTextNode(nestedData[i].title);
+            legend.appendChild(titleLegend);
+            fieldset.appendChild(legend);
+
+            for(let y = 0; y < nestedData[i].questions.length; y++){
+                let div = document.createElement('div');
+                let txt = document.createTextNode(nestedData[i].questions[y].title);
+                div.appendChild(txt);
+
+                let input = this.inputType(nestedData[i].questions[y].answers[0].answerType);
+                div.appendChild(input);
+
+                fieldset.appendChild(div);
+            }
+
+            form.appendChild(fieldset);
+        }
+
+        document.querySelector('.modal-body').insertBefore(form, null);
+    }
+
+    static inputType(answerType) {
+        var input = null;
+        if(answerType === 'shortText') {
+            input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.classList.add('form-control');
+        }
+        return input;
+    }
     
 }

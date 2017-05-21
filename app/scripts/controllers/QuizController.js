@@ -33,6 +33,21 @@ class QuizController {
         $('#modal').modal();
     }
 
+    viewQuiz(quizId, section, question, answer) {
+        let quiz = this._quizList.searchById(quizId);
+        let sections = section.getFilteredList(quizId);
+        for(let i = 0; i < sections.length; i++) {
+            let questions = question.getFilteredList(sections[i].id);
+            for(let y = 0; y < questions.length; y++) {
+                let answers = answer.getFilteredList(questions[y].id);
+                questions[y]['answers'] = answers;
+            }
+            sections[i]['questions'] = questions;
+        }
+        HtmlElementsHelper.viewQuiz(quiz, sections);
+        $('#modal').modal();
+    }
+
     _newQuiz() {
         this._idQuiz = ((this._quizList.list).length) + 1
         return new Quiz(this._idQuiz, this._titleQuiz.value);
