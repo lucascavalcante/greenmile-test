@@ -36,8 +36,8 @@
 			<li>
 				{{ title }}
 				<span class="pull-right">
-					<a title="Editar Pergunta" onclick="question.openModalEditQuestion({{ id }})"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-					<a title="Apagar Pergunta" onclick="question.delQuestion({{ id }},{{ quizId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
+					<a title="Adicionar Tipo de Resposta" id="add-type-answer{{ id }}" onclick="question.openModalEditQuestion({{ id }})"><i class="fa fa-plus" aria-hidden="true"></i></a>
+					<a title="Apagar Pergunta" onclick="question.delQuestion({{ id }},{{ sectionId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
 				</span>
 			</li>
 		{{/question}}
@@ -77,6 +77,7 @@
 				<div class="panel-body">
 					{{ title }}
 					<span class="pull-right">
+						<a title="Visualizar Questionário" onclick=""><i class="fa fa-eye" aria-hidden="true"></i></a>
 						<a title="Adicionar Seção" onclick="quiz.openModalSection({{ id }})"><i class="fa fa-list" aria-hidden="true"></i></a>
 						<a title="Apagar Questionário" onclick="quiz.delQuiz({{ id }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
 					</span>
@@ -118,14 +119,17 @@
 	<script src="scripts/models/Question.js"></script>
 	<script src="scripts/models/Section.js"></script>
 	<script src="scripts/models/Quiz.js"></script>
+	<script src="scripts/models/Answer.js"></script>
 
 	<script src="scripts/models/List.js"></script>
 	<script src="scripts/models/ListSection.js"></script>
 	<script src="scripts/models/ListQuestion.js"></script>
+	<script src="scripts/models/ListAnswer.js"></script>
 
 	<script src="scripts/controllers/QuizController.js"></script>
 	<script src="scripts/controllers/SectionController.js"></script>
 	<script src="scripts/controllers/QuestionController.js"></script>
+	<script src="scripts/controllers/AnswerController.js"></script>
 
 	<script src="scripts/app.js"></script>
 	<!-- endbuild -->

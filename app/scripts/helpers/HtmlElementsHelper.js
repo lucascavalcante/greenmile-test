@@ -47,7 +47,7 @@ class HtmlElementsHelper {
 
         var select = document.createElement('select');
         select.classList.add('form-control');
-        select.setAttribute('onchange','question.addAnswerType()');
+        select.setAttribute('onchange','answer.addAnswerType(' + id + ', this.value)');
 
         var defaultOption = document.createElement('option');
         defaultOption.value = '';
@@ -55,8 +55,15 @@ class HtmlElementsHelper {
         select.appendChild(defaultOption);
         
         var options = {
-            'short-text': 'Texto Curto',
-            'long-text': 'Texto Longo'
+            'shortText': 'Texto Curto',
+            'longText': 'Texto Longo',
+            'date': 'Data',
+            'datetime': 'Data e Hora',
+            'radio': 'Seleção Única',
+            'checkbox': 'Seleção Múltipla',
+            'number': 'Numérico',
+            'boolean': 'Sim / Não',
+            'rating': 'Classificação',
         };
 
         for(let key in options) {
@@ -69,6 +76,46 @@ class HtmlElementsHelper {
         div.appendChild(select);
         
         document.querySelector('.modal-body').insertBefore(div, null);
+
+        var divAnswers = document.createElement('div');
+        divAnswers.id = 'answers';
+        document.querySelector('.modal-body').insertBefore(divAnswers, null);
+    }
+
+    static printAnswer(idQuestion, answerType) {
+        document.querySelector('#answers').innerHTML = '';
+
+        if(answerType === 'radio' || answerType === 'checkbox') {
+            let addButton = document.createElement('button');
+            addButton.classList.add('btn');
+            addButton.classList.add('btn-success');
+            addButton.setAttribute('id', 'add-button');
+            addButton.setAttribute('onclick','answer.addOptionAnswer(' + idQuestion + ')');
+
+            let textAddButton = document.createTextNode('+ Adicionar Opção');
+            addButton.appendChild(textAddButton);
+
+            document.querySelector('#answers').insertBefore(addButton, null);
+        }
+
+        let button = document.createElement('button');
+        button.classList.add('btn');
+        button.classList.add('btn-primary');
+        button.classList.add('form-control');
+        button.setAttribute('onclick','answer.addAnswer(' + idQuestion + ',\'' + answerType + '\')');
+
+        let textButton = document.createTextNode('Salvar Tipo de Resposta');
+        button.appendChild(textButton);
+
+        document.querySelector('#answers').insertBefore(button, null);
+    }
+
+    static printOptionAnswer(idQuestion) {
+        let input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.setAttribute('name', 'options' + idQuestion + '[]');
+        input.classList.add('form-control');
+        document.querySelector('#answers').insertBefore(input, document.getElementById('add-button'));
     }
     
 }
