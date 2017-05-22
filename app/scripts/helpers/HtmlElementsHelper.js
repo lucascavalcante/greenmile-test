@@ -6,36 +6,107 @@ class HtmlElementsHelper {
         throw new Error('Erro ao criar classe HtmlElementsHelper - classe estática');
     }
     
+    // print form for add section on modal
     static formSection(id, title) {
         document.querySelector('.modal-title').innerHTML  = 'Adicionar Seção';
-        let html = '\
-            <div>\
-                <strong>Questionário:</strong> '+ title +'\
-            </div>\
-            <div class="form-group">\
-                <label for="title-section">Título da Seção</label>\
-			    <input type="text" class="form-control" id="title-section" required>\
-                <input type="hidden" id="id-quiz" value="' + id + '">\
-			    <button class="btn btn-primary form-control" onclick="section.addSection(' + id + ')">Criar Seção</button>\
-            </div>\
-        ';
-        document.querySelector('.modal-body').innerHTML  = html;
+        document.querySelector('.modal-body').innerHTML  = '';
+
+        let div1 = document.createElement('div');
+        
+        let strong = document.createElement('strong');
+        let txtStrong = document.createTextNode('Questionário: ');
+        strong.appendChild(txtStrong);
+
+        let span = document.createElement('span');
+        let txtSpan = document.createTextNode(title);
+        span.appendChild(txtSpan);
+
+        div1.appendChild(strong);
+        div1.appendChild(span);
+
+        let div2 = document.createElement('div');
+        div2.classList.add('form-group');
+
+        let label = document.createElement('label');
+        label.setAttribute('for', 'title-section');
+        let txtLabel = document.createTextNode('Título da Seção');
+        label.appendChild(txtLabel);
+
+        let inputText = document.createElement('input');
+        inputText.classList.add('form-control');
+        inputText.setAttribute('type', 'text');
+        inputText.setAttribute('id', 'title-section');
+        inputText.setAttribute('required', 'required');
+        div2.appendChild(inputText);
+
+        let inputHidden = document.createElement('input');
+        inputHidden.setAttribute('type', 'hidden');
+        inputHidden.setAttribute('id', 'id-quiz');
+        inputHidden.setAttribute('value', id);
+        div2.appendChild(inputHidden);
+
+        let button = document.createElement('button');
+        button.classList.add('btn');
+        button.classList.add('btn-primary');
+        button.classList.add('form-control');
+        button.setAttribute('onclick', 'section.addSection(' + id + ')');
+        let txtButon = document.createTextNode('Criar Seção');
+        button.appendChild(txtButon);
+        div2.appendChild(button);
+
+        document.querySelector('.modal-body').insertBefore(div2, null);
+        document.querySelector('.modal-body').insertBefore(div1, div2);
     }
 
     static formQuestion(id, title) {
         document.querySelector('.modal-title').innerHTML  = 'Adicionar Pergunta';
-        let html = '\
-            <div>\
-                <strong>Seção:</strong> '+ title +'\
-            </div>\
-            <div class="form-group">\
-                <label for="title-question">Enunciado da Pergunta</label>\
-			    <input type="text" class="form-control" id="title-question" required>\
-                <input type="hidden" id="id-section" value="' + id + '">\
-			    <button class="btn btn-primary form-control" onclick="question.addQuestion(' + id + ')">Criar Pergunta</button>\
-            </div>\
-        ';
-        document.querySelector('.modal-body').innerHTML  = html;
+        document.querySelector('.modal-body').innerHTML  = '';
+
+        let div1 = document.createElement('div');
+        
+        let strong = document.createElement('strong');
+        let txtStrong = document.createTextNode('Seção: ');
+        strong.appendChild(txtStrong);
+
+        let span = document.createElement('span');
+        let txtSpan = document.createTextNode(title);
+        span.appendChild(txtSpan);
+
+        div1.appendChild(strong);
+        div1.appendChild(span);
+
+        let div2 = document.createElement('div');
+        div2.classList.add('form-group');
+
+        let label = document.createElement('label');
+        label.setAttribute('for', 'title-question');
+        let txtLabel = document.createTextNode('Enunciado da Pergunta');
+        label.appendChild(txtLabel);
+
+        let inputText = document.createElement('input');
+        inputText.classList.add('form-control');
+        inputText.setAttribute('type', 'text');
+        inputText.setAttribute('id', 'title-question');
+        inputText.setAttribute('required', 'required');
+        div2.appendChild(inputText);
+
+        let inputHidden = document.createElement('input');
+        inputHidden.setAttribute('type', 'hidden');
+        inputHidden.setAttribute('id', 'id-section');
+        inputHidden.setAttribute('value', id);
+        div2.appendChild(inputHidden);
+
+        let button = document.createElement('button');
+        button.classList.add('btn');
+        button.classList.add('btn-primary');
+        button.classList.add('form-control');
+        button.setAttribute('onclick', 'question.addQuestion(' + id + ')');
+        let txtButon = document.createTextNode('Criar Pergunta');
+        button.appendChild(txtButon);
+        div2.appendChild(button);
+
+        document.querySelector('.modal-body').insertBefore(div2, null);
+        document.querySelector('.modal-body').insertBefore(div1, div2);
     }
 
     static formEditQuestion(id, title) {
