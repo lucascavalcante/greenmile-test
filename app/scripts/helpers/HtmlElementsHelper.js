@@ -6,7 +6,11 @@ class HtmlElementsHelper {
         throw new Error('Erro ao criar classe HtmlElementsHelper - classe estática');
     }
     
-    // print form for add section on modal
+    /**
+     * @param id
+     * @param title
+     * print form for add section on modal
+    */
     static formSection(id, title) {
         document.querySelector('.modal-title').innerHTML  = 'Adicionar Seção';
         document.querySelector('.modal-body').innerHTML  = '';
@@ -58,6 +62,11 @@ class HtmlElementsHelper {
         document.querySelector('.modal-body').insertBefore(div1, div2);
     }
 
+    /**
+     * @param id
+     * @param title
+     * print form for add question on modal
+    */
     static formQuestion(id, title) {
         document.querySelector('.modal-title').innerHTML  = 'Adicionar Pergunta';
         document.querySelector('.modal-body').innerHTML  = '';
@@ -109,6 +118,11 @@ class HtmlElementsHelper {
         document.querySelector('.modal-body').insertBefore(div1, div2);
     }
 
+    /**
+     * @param id
+     * @param title
+     * print form for edit question on modal (add answer)
+    */
     static formEditQuestion(id, title) {
         document.querySelector('.modal-title').innerHTML  = 'Editar Pergunta';
         document.querySelector('.modal-body').innerHTML  = '<strong>Enunciado:</strong> ' + title;
@@ -153,6 +167,11 @@ class HtmlElementsHelper {
         document.querySelector('.modal-body').insertBefore(divAnswers, null);
     }
 
+    /**
+     * @param idQuestion
+     * @param answerType
+     * when selected the answer type, print specific input
+    */
     static printAnswer(idQuestion, answerType) {
         document.querySelector('#answers').innerHTML = '';
 
@@ -181,6 +200,11 @@ class HtmlElementsHelper {
         document.querySelector('#answers').insertBefore(button, null);
     }
 
+    /**
+     * @param idQuestion
+     * @param answerType
+     * if the answer type is radio or checkbox, generate the options
+    */
     static printOptionAnswer(idQuestion) {
         let input = document.createElement('input');
         input.setAttribute('type', 'text');
@@ -189,6 +213,11 @@ class HtmlElementsHelper {
         document.querySelector('#answers').insertBefore(input, document.getElementById('add-button'));
     }
 
+    /**
+     * @param quiz
+     * @param nestedData
+     * print final quiz with all sections, questions and answers
+    */
     static viewQuiz(quiz, nestedData) {
         document.querySelector('.modal-title').innerHTML  = 'Visualizar Questionário - ' + quiz.title;
         document.querySelector('.modal-body').innerHTML  = '';
@@ -229,6 +258,12 @@ class HtmlElementsHelper {
         document.querySelector('.modal-body').insertBefore(form, null);
     }
 
+    /**
+     * @param answerType
+     * @param optionsAnswer
+     * @param questionId
+     * select the specific answer type and print
+    */
     static inputType(answerType, optionsAnswer, questionId) {
         if(answerType === 'shortText') {
             let input = document.createElement('input');

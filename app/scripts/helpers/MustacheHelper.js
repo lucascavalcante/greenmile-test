@@ -6,6 +6,11 @@ class MustacheHelper {
         throw new Error('Erro ao criar classe MustacheHelper - classe estática');
     }
 
+    /**
+     * @param data
+     * @param config
+     * generic function for print dynamic data on view
+    */
     static print(data, config) {
         switch(config.item) {
             case 'quiz':
@@ -20,12 +25,21 @@ class MustacheHelper {
         }
     }
     
+    /**
+     * @param data
+     * print quiz dynamic data on view
+    */
     static printQuiz(data) {
         let items = { quiz: data.list };
         let output = Mustache.render(document.getElementById('item-quiz').firstChild.nodeValue, items);
         document.getElementById('quizzes').innerHTML = output;
     }
 
+    /**
+     * @param data
+     * @param config
+     * print section dynamic data on view
+    */
     static printSection(data, config) {
 
         let listByQuiz = [];
@@ -40,6 +54,11 @@ class MustacheHelper {
         document.getElementById('sections-' + config.quizId).innerHTML = output;
     }
 
+    /**
+     * @param data
+     * @param config
+     * print question dynamic data on view
+    */
     static printQuestion(data, config) {
 
         let listBySection = [];

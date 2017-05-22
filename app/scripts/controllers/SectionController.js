@@ -14,14 +14,22 @@ class SectionController {
         this._titleSection = null;
     }
 
+    /**
+     * @param quizId
+     * add new section
+    */
     addSection(quizId) {
         this._titleSection = document.querySelector('#title-section');
         this._quizId = quizId;
         this._sectionList.add(this._newSection());
-        this._clearForm();
         $('#modal').modal('hide');
     }
 
+    /**
+     * @param id
+     * @param quizId
+     * delete specific section
+    */
     delSection(id,quizId) {
         this._quizId = quizId;
         if(confirm('Tem certeza que deseja apagar essa seção?')) {
@@ -29,27 +37,30 @@ class SectionController {
         }
     }
 
-    getFocus() {
-        this._titleSection.focus();
-    }
-
+    /**
+     * @param id
+     * open modal for add questions
+    */
     openModalQuestion(id) {
         let sectionSelected = this._sectionList.searchById(id);
         HtmlElementsHelper.formQuestion(id, sectionSelected.title);
         $('#modal').modal();
     }
 
+    /**
+     * @param quizId
+     * just get sections with parent quizzes where has the quizId
+    */
     getFilteredList(quizId) {
         return this._sectionList.searchByQuizId(quizId);
     }
 
+    /**
+     * create new section object
+    */
     _newSection() {
         this._idSection = ((this._sectionList.list).length) + 1;
         return new Section(this._idSection, this._quizId, this._titleSection.value);
-    }
-
-    _clearForm() {
-        this._titleSection.value = '';
     }
 
 }

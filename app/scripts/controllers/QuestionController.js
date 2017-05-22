@@ -14,14 +14,22 @@ class QuestionController {
         this._titleQuestion = null;
     }
 
+    /**
+     * @param sectionId
+     * add new question
+    */
     addQuestion(sectionId) {
         this._titleQuestion = document.querySelector('#title-question');
         this._sectionId = sectionId;
         this._questionList.add(this._newQuestion());
-        this._clearForm();
         $('#modal').modal('hide');
     }
 
+    /**
+     * @param id
+     * @param sectionId
+     * delete specific question
+    */
     delQuestion(id, sectionId) {
         this._sectionId = sectionId;
         if(confirm('Tem certeza que deseja apagar essa pergunta?')) {
@@ -29,27 +37,30 @@ class QuestionController {
         }
     }
 
-    getFocus() {
-        //this._titleQuestion.focus();
-    }
-
+    /**
+     * @param id
+     * open modal for edit question (add answers)
+    */
     openModalEditQuestion(id) {
         let questionSelected = this._questionList.searchById(id);
         HtmlElementsHelper.formEditQuestion(id, questionSelected.title);
         $('#modal').modal();
     }
 
+    /**
+     * @param sectionId
+     * just get questions with parent sections where has the sectionId
+    */
     getFilteredList(sectionId) {
         return this._questionList.searchBySectionId(sectionId);
     }
 
+    /**
+     * create new question object
+    */
     _newQuestion() {
         this._idQuestion = ((this._questionList.list).length) + 1;
         return new Question(this._idQuestion, this._sectionId, this._titleQuestion.value);
-    }
-
-    _clearForm() {
-        this._titleQuestion.value = '';
     }
 
 }

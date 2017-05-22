@@ -11,6 +11,11 @@ class AnswerController {
         this._optionsAnswer = null;
     }
 
+    /**
+     * @param idQuestion
+     * @param answerType
+     * add new answer
+    */
     addAnswer(idQuestion, answerType) {
         this._questionId = idQuestion;
         this._answerType = answerType;
@@ -27,18 +32,34 @@ class AnswerController {
         document.getElementById('add-type-answer' + idQuestion).remove();
     }
 
+    /**
+     * @param idQuestion
+     * @param answerType
+     * generate html elements for add answer type
+    */
     addAnswerType(idQuestion, answerType) {
         HtmlElementsHelper.printAnswer(idQuestion, answerType);
     }
 
+    /**
+     * @param idQuestion
+     * generate html elements for radio and checkbox items
+    */
     addOptionAnswer(idQuestion) {
         HtmlElementsHelper.printOptionAnswer(idQuestion);
     }
 
+    /**
+     * @param questionId
+     * just get answers with parent question where has the questionId
+    */
     getFilteredList(questionId) {
         return this._answerList.searchByQuestionId(questionId);
     }
 
+    /**
+     * create new answer object
+    */
     _newAnswer() {
         this._idAnswer = ((this._answerList.list).length) + 1;
         return new Answer(this._idAnswer, this._questionId, this._answerType, this._optionsAnswer);
