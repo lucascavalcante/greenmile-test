@@ -29,7 +29,6 @@ class HtmlElementsHelper {
         div1.appendChild(span);
 
         let div2 = document.createElement('div');
-        div2.classList.add('form-group');
 
         let label = document.createElement('label');
         label.setAttribute('for', 'title-section');
@@ -52,7 +51,7 @@ class HtmlElementsHelper {
         let button = document.createElement('button');
         button.classList.add('btn');
         button.classList.add('btn-primary');
-        button.classList.add('form-control');
+        button.classList.add('btn-block');
         button.setAttribute('onclick', 'section.addSection(' + id + ')');
         let txtButon = document.createTextNode('Criar Seção');
         button.appendChild(txtButon);
@@ -85,7 +84,6 @@ class HtmlElementsHelper {
         div1.appendChild(span);
 
         let div2 = document.createElement('div');
-        div2.classList.add('form-group');
 
         let label = document.createElement('label');
         label.setAttribute('for', 'title-question');
@@ -108,7 +106,7 @@ class HtmlElementsHelper {
         let button = document.createElement('button');
         button.classList.add('btn');
         button.classList.add('btn-primary');
-        button.classList.add('form-control');
+        button.classList.add('btn-block');
         button.setAttribute('onclick', 'question.addQuestion(' + id + ')');
         let txtButon = document.createTextNode('Criar Pergunta');
         button.appendChild(txtButon);
@@ -128,7 +126,6 @@ class HtmlElementsHelper {
         document.querySelector('.modal-body').innerHTML  = '<strong>Enunciado:</strong> ' + title;
         
         var div = document.createElement('div');
-        div.classList.add('form-group');
 
         var select = document.createElement('select');
         select.classList.add('form-control');
@@ -191,7 +188,7 @@ class HtmlElementsHelper {
         let button = document.createElement('button');
         button.classList.add('btn');
         button.classList.add('btn-primary');
-        button.classList.add('form-control');
+        button.classList.add('btn-block');
         button.setAttribute('onclick','answer.addAnswer(' + idQuestion + ',\'' + answerType + '\')');
 
         let textButton = document.createTextNode('Salvar Tipo de Resposta');
@@ -248,7 +245,7 @@ class HtmlElementsHelper {
         let button = document.createElement('button');
         button.classList.add('btn');
         button.classList.add('btn-primary');
-        button.classList.add('form-control');
+        button.classList.add('btn-block');
 
         let txtButon = document.createTextNode('Finalizar Questionário');
         button.appendChild(txtButon);

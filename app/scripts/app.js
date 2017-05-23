@@ -9,9 +9,6 @@ let question = new QuestionController();
 
 let answer = new AnswerController();
 
-// init collapse
-$('.collapse').collapse();
-
 // quiz visualization
 function viewQuiz(quizId) {
     quiz.viewQuiz(quizId, section, question, answer);

@@ -44,7 +44,7 @@ class QuizController {
     openModalSection(id) {
         let quizSelected = this._quizList.searchById(id);
         HtmlElementsHelper.formSection(id, quizSelected.title);
-        $('#modal').modal();
+        CssHelper.show(['.modal','.dark-bg']);
     }
 
     /**
@@ -66,7 +66,7 @@ class QuizController {
             sections[i]['questions'] = questions;
         }
         HtmlElementsHelper.viewQuiz(quiz, sections);
-        $('#modal').modal();
+        CssHelper.show(['.modal','.dark-bg']);
     }
 
     /**

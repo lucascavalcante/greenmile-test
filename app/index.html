@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="">
 
 <head>
 	<meta charset="utf-8">
@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Greenmile Test</title>
 
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<!-- build:css styles/main.css -->
 	<link rel="stylesheet" href="styles/main.css">
 	<!-- endbuild -->
@@ -16,13 +15,18 @@
 
 <body>
 
+	<!-- Dark bg -->
+	<div class="dark-bg"></div>
+
 	<!-- Modal -->
 
-	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
+	<div class="modal" id="modal">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<span class="pull-right">
+						<a title="Fechar popup" onclick="CssHelper.hide(['.modal','.dark-bg'])"><i class="fa fa-times" aria-hidden="true"></i></a>
+					</span>
 					<h4 class="modal-title"></h4>
 				</div>
 				<div class="modal-body"></div>
@@ -34,7 +38,7 @@
 	<script id="item-question" type="text/html">
 		{{#question}}
 			<li>
-				{{ title }}
+				<i class="fa fa-arrow-right" aria-hidden="true"></i> {{ title }}
 				<span class="pull-right">
 					<a title="Adicionar Tipo de Resposta" id="add-type-answer{{ id }}" onclick="question.openModalEditQuestion({{ id }})"><i class="fa fa-plus" aria-hidden="true"></i></a>
 					<a title="Apagar Pergunta" onclick="question.delQuestion({{ id }},{{ sectionId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -45,26 +49,20 @@
 
 	<!-- Sections Template -->
 	<script id="item-section" type="text/html">
-		<div class="panel-group" id="accordion{{ id }}">
-		{{#section}}
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordion{{ id }}" href="#section{{ id }}">Seção: {{ title }}</a>
-						<span class="pull-right">
-							<a title="Adicionar Pergunta" onclick="section.openModalQuestion({{ id }})"><i class="fa fa-file-o" aria-hidden="true"></i></a>
-							<a title="Apagar Seção" onclick="section.delSection({{ id }},{{ quizId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
-						</span>
-					</h4>
-				</div>
-				<div id="section{{ id }}" class="panel-collapse collapse">
-					<div class="panel-body">
-						<ol id="questions-{{ id }}"></ol>
-					</div>
-				</div>
+	{{#section}}
+		<div class="panel-inner">
+			<div class="panel-inner-header">
+				Seção: {{ title }}
+				<span class="pull-right">
+					<a title="Adicionar Pergunta" onclick="section.openModalQuestion({{ id }})"><i class="fa fa-file-o" aria-hidden="true"></i></a>
+					<a title="Apagar Seção" onclick="section.delSection({{ id }},{{ quizId }})"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</span>
 			</div>
-		{{/section}}
+			<div class="panel-inner-body">
+				<ul id="questions-{{ id }}"></ul>
+			</div>
 		</div>
+	{{/section}}
 	</script>
 
 	<!-- Quizzes Template -->
@@ -72,8 +70,8 @@
 
 		<div>
 			{{#quiz}}
-			<div class="panel panel-default">
-				<div class="panel-heading">Questionário {{ id }}</div>
+			<div class="panel">
+				<div class="panel-header">Questionário {{ id }}</div>
 				<div class="panel-body">
 					{{ title }}
 					<span class="pull-right">
@@ -91,12 +89,12 @@
 
 	<!-- /templates -->
 
-	<div class="container">
+	<div class="container-quiz">
 
-		<div class="form-group">
-			<label for="title-quiz">Título do Questionário</label>
+		<div>
+			<div class="title-quiz">Título do Questionário</label>
 			<input type="text" class="form-control" id="title-quiz" required>
-			<button class="btn btn-primary form-control" onclick="quiz.addQuiz()">Criar Questionário</button>
+			<button class="btn btn-primary btn-block" onclick="quiz.addQuiz()">Criar Questionário</button>
 		</div>
 
 		<div id="quizzes"></div>
@@ -104,17 +102,14 @@
 	</div>
 
 	<!-- build:js scripts/vendor.js -->
-	<script src="/bower_components/modernizr/modernizr.js"></script>
 	<script src="/bower_components/mustache.js/mustache.min.js"></script>
-	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
-	<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
 	<!-- endbuild -->
 
 
 	<!-- build:js scripts/main.js -->
 	<script src="scripts/helpers/MustacheHelper.js"></script>
 	<script src="scripts/helpers/HtmlElementsHelper.js"></script>
+	<script src="scripts/helpers/CssHelper.js"></script>
 
 	<script src="scripts/models/Question.js"></script>
 	<script src="scripts/models/Section.js"></script>

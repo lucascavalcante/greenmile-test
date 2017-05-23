@@ -22,7 +22,7 @@ class SectionController {
         this._titleSection = document.querySelector('#title-section');
         this._quizId = quizId;
         this._sectionList.add(this._newSection());
-        $('#modal').modal('hide');
+        CssHelper.hide(['.modal','.dark-bg']);
     }
 
     /**
@@ -44,7 +44,7 @@ class SectionController {
     openModalQuestion(id) {
         let sectionSelected = this._sectionList.searchById(id);
         HtmlElementsHelper.formQuestion(id, sectionSelected.title);
-        $('#modal').modal();
+        CssHelper.show(['.modal','.dark-bg']);
     }
 
     /**

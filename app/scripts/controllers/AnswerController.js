@@ -28,7 +28,7 @@ class AnswerController {
         this._optionsAnswer = optionsArray.join();
 
         this._answerList.add(this._newAnswer());
-        $('#modal').modal('hide');
+        CssHelper.hide(['.modal','.dark-bg']);
         document.getElementById('add-type-answer' + idQuestion).remove();
     }
 

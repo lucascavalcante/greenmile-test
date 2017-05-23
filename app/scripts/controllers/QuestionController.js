@@ -22,7 +22,7 @@ class QuestionController {
         this._titleQuestion = document.querySelector('#title-question');
         this._sectionId = sectionId;
         this._questionList.add(this._newQuestion());
-        $('#modal').modal('hide');
+        CssHelper.hide(['.modal','.dark-bg']);
     }
 
     /**
@@ -44,7 +44,7 @@ class QuestionController {
     openModalEditQuestion(id) {
         let questionSelected = this._questionList.searchById(id);
         HtmlElementsHelper.formEditQuestion(id, questionSelected.title);
-        $('#modal').modal();
+        CssHelper.show(['.modal','.dark-bg']);
     }
 
     /**
