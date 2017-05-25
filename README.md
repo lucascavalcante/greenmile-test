@@ -28,5 +28,9 @@ gulp serve
 ```
 gulp serve:dist
 ```
+* Run tests
+```
+gulp serve:test
+```
 
 Enjoy it! :)
